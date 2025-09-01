@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cadastro</title>
+</head>
+<body> 
+    <div id="login">
+        <div id="content">
+            <div id="image_container">
+                <img src="https://picsum.photos/200/300" alt="img" id="image">
+            </div>
+            <div id="form_container">
+                <div id="form">
+                    <h1>Cadastro</h1>
+                    <form action="processar_cadastro.php" method="post">
+                        <label for="rm">RM</label>
+                        <input type="number" name="rm" class="input" required>
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" class="input" required>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="input" required>
+                        <label for="password">Senha</label>
+                        <input type="password" name="password" class="input" required>
+                        <label for="cpf">CPF</label>
+                        <input type="text" name="cpf" class="input" required>
+                        <input type="submit" value="Cadastrar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

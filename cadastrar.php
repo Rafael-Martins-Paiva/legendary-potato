@@ -1,62 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>cadastro</title>
-</head>
-<body> 
-    <div id="login">
-        <div id="content">
-            <div id="image_container">
-                <img src="https://picsum.photos/200/300" alt="img" id="image">
-            </div>
-            <div id="form_container">
-                <div id="form">
-                <h1>login</h1>
-                <form action="" method="post">
-                    <label for="rm">rm</label>
-                    <input type="number" name="rm" class="input" >
-                    <label for="name">name</label>
-                    <input type="text" name="name" class="input">
-                    <label for="email">email</label>
-                    <input type="email" name="email" class="input">
-                    <label for="password">password</label>
-                    <input type="password" name="password" class="input">
-                    <label for="cpf">cpf</label>
-                    <input type="text" name="cpf" class="input">
-                    <input type="submit">
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
 <?php
 
 require 'Aluno.class.php';
-$aluno = new Aluno();
 
-$con = $aluno->conectar();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $rm = $_POST['rm'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = hash('sha256', $_POST['password']);
-    $cpf = $_POST['cpf'];
-
-    if( $con ){
-        $al = $aluno->consultar($email);
-        if( !$al ){
-            $aluno->cadastrar($email, $cpf, $rm, $name);
-        }else{
-        }
-    }else{
-    }
+function logError($message) {
+    $logFile = 'erros.log';
+    $formattedMessage = '[' . date('Y-m-d H:i:s') . '] ' . $message . PHP_EOL;
+    file_put_contents($logFile, $formattedMessage, FILE_APPEND | LOCK_EX);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-?>
+    $rm = filter_input(INPUT_POST, 'rm', FILTER_VALIDATE_INT);
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = $_POST['password'];
+    $cpf = preg_replace('/[^0-9]/', '', filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_STRING));
+
+    if (!$rm || !$name || !$email || !$password || !$cpf || strlen($cpf) !== 11) {
+        logError("Tentativa de cadastro com dados inválidos ou incompletos.");
+        header("Location: cadastro.html?erro=dados_invalidos");
+        exit();
+    }
+
+    try {
+        $aluno = new Aluno();
+        $con = $aluno->conectar();
+
+        if (!$con) {
+            throw new Exception("Erro ao conectar com o banco de dados.");
+        }
+
+        $al = $aluno->consultar($email);
+
+        if ($al) {
+            throw new Exception("Email '$email' já cadastrado.");
+        }
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $aluno->cadastrar($email, $cpf, $rm, $name, $hashed_password);
+
+        header("Location: sucesso_cadastro.html");
+        exit();
+
+    } catch (Exception $e) {
+        logError($e->getMessage());
+        header("Location: cadastro.html?erro=falha_no_cadastro");
+        exit();
+    }
+}

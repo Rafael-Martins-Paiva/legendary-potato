@@ -8,7 +8,7 @@ class Aluno{
     private $pdo;
 
     public function conectar(){
-        $dns    = "mysql:dbname=etimpwiialuno;host=localhost";
+        $dns    = "mysql:dbname=etimpwiialuno;host=127.0.0.1";
         $dbUser = "root";
         $dbPass = "";
 
