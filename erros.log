@@ -1,23 +1,67 @@
 [2025-09-01 12:51:21] Tentativa de cadastro com dados inválidos ou incompletos.
 
-public class MediaNotas {
+ import java.util.Scanner;
+
+public class MenuAninhado {
 
     public static void main(String[] args) {
-        // Vetor com as notas de exemplo
-        double[] notas = {8.5, 7.0, 9.2, 6.5, 10.0, 8.8};
-        
-        // Variável para armazenar a soma das notas
-        double soma = 0;
+        Scanner scanner = new Scanner(System.in);
 
-        // For-each loop para somar as notas
-        for (double nota : notas) {
-            soma += nota;
-        }
+        System.out.println("Selecione uma categoria:");
+        System.out.println("1 - Bebidas");
+        System.out.println("2 - Lanches");
+        System.out.println("3 - Sobremesas");
 
-        // Calcula a média dividindo a soma pelo número de elementos no vetor
-        double media = soma / notas.length;
+        int categoria = scanner.nextInt();
 
-        // Imprime o resultado formatado
-        System.out.printf("A média das notas é: %.2f%n", media);
-    }
-}
+        switch (categoria) {
+            case 1:
+                System.out.println("Você selecionou Bebidas. Agora escolha uma opção:");
+                System.out.println("1 - Refrigerante");
+                System.out.println("2 - Suco");
+                int bebida = scanner.nextInt();
+                switch (bebida) {
+                    case 1:
+                        System.out.println("Você escolheu Refrigerante.");
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu Suco.");
+                        break;
+                    default:
+                        System.out.println("Opção de bebida inválida.");
+                }
+                break;
+            case 2:
+                System.out.println("Você selecionou Lanches. Agora escolha uma opção:");
+                System.out.println("1 - Sanduíche");
+                System.out.println("2 - Salgado");
+                int lanche = scanner.nextInt();
+                switch (lanche) {
+                    case 1:
+                        System.out.println("Você escolheu Sanduíche.");
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu Salgado.");
+                        break;
+                    default:
+                        System.out.println("Opção de lanche inválida.");
+                }
+                break;
+            case 3:
+                System.out.println("Você selecionou Sobremesas. Agora escolha uma opção:");
+                System.out.println("1 - Bolo");
+                System.out.println("2 - Sorvete");
+                int sobremesa = scanner.nextInt();
+                switch (sobremesa) {
+                    case 1:
+                        System.out.println("Você escolheu Bolo.");
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu Sorvete.");
+                        break;
+                    default:
+                        System.out.println("Opção de sobremesa inválida.");
+                }
+                break;
+            default:
+                System.out.println("Opção de categoria
