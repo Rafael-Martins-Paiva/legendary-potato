@@ -43,7 +43,7 @@ class Aluno{
         $this ->cpf =$cpf;
     }
 
-    public function cadastrar($email, $cpf, $rm, $nome){
+    public function cadastrar($email, $cpf, $senha, $nome){
         $sql = "INSERT INTO aluno (nome, email, cpf, senha) VALUES (:n, :e, :c, :s)";
         $sql = $this->pdo->prepare($sql);
         $sql->bindValue(":n", $nome);
