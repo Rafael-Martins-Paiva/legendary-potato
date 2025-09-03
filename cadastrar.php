@@ -1,21 +1,23 @@
 <?php
-
 require 'Aluno.class.php';
 
 function logError($message) {
-    $logFile = 'erros.log';
+    $logFile = __DIR__ . '/erros.log';
     $formattedMessage = '[' . date('Y-m-d H:i:s') . '] ' . $message . PHP_EOL;
     file_put_contents($logFile, $formattedMessage, FILE_APPEND | LOCK_EX);
 }
 
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/php_error.log');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $name = trim(strip_tags($_POST['name'] ?? ''));
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $password = $_POST['password'];
-    $cpf = preg_replace('/[^0-9]/', '', filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_STRING));
+    $password = $_POST['password'] ?? '';
+    $cpf = preg_replace('/\D/', '', $_POST['cpf'] ?? '');
 
-    if ( !$name || !$email || !$password || !$cpf || strlen($cpf) !== 11) {
+    if (!$name || !$email || !$password || !$cpf || strlen($cpf) !== 11) {
         logError("Tentativa de cadastro com dados inválidos ou incompletos.");
         header("Location: cadastro.html?erro=dados_invalidos");
         exit();
@@ -41,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: sucesso_cadastro.html");
         exit();
-
     } catch (Exception $e) {
         logError($e->getMessage());
         header("Location: cadastro.html?erro=falha_no_cadastro");
