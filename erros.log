@@ -1,1 +1,24 @@
 [2025-09-01 12:51:21] Tentativa de cadastro com dados inválidos ou incompletos.
+
+public class MatrizSomaIndices {
+
+    public static void main(String[] args) {
+        int[][] matriz = new int[5][5];
+
+        // Preenche a matriz com a soma dos índices (i + j)
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                matriz[i][j] = i + j;
+            }
+        }
+
+        // Imprime a matriz de forma alinhada
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                // Usa %-4d para formatar o número em 4 espaços, alinhado à esquerda
+                System.out.printf("%-4d", matriz[i][j]);
+            }
+            System.out.println(); // Pula para a próxima linha após cada linha da matriz
+        }
+    }
+}
