@@ -1,6 +1,4 @@
-[2025-09-01 12:51:21] Tentativa de cadastro com dados inválidos ou incompletos.
-
- import java.util.Scanner;
+import java.util.Scanner;
 
 public class MenuAninhado {
 
@@ -64,4 +62,9 @@ public class MenuAninhado {
                 }
                 break;
             default:
-                System.out.println("Opção de categoria
+                System.out.println("Opção de categoria inválida.");
+        }
+
+        scanner.close();
+    }
+}
