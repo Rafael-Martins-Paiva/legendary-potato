@@ -10,13 +10,12 @@ function logError($message) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $rm = filter_input(INPUT_POST, 'rm', FILTER_VALIDATE_INT);
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
     $cpf = preg_replace('/[^0-9]/', '', filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_STRING));
 
-    if (!$rm || !$name || !$email || !$password || !$cpf || strlen($cpf) !== 11) {
+    if ( !$name || !$email || !$password || !$cpf || strlen($cpf) !== 11) {
         logError("Tentativa de cadastro com dados inválidos ou incompletos.");
         header("Location: cadastro.html?erro=dados_invalidos");
         exit();
@@ -38,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $aluno->cadastrar($email, $cpf, $rm, $name, $hashed_password);
+        $aluno->cadastrar($email, $cpf, $name, $hashed_password);
 
         header("Location: sucesso_cadastro.html");
         exit();

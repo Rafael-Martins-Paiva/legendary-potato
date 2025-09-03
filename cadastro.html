@@ -1,36 +1,459 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Cadastro</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join Now for Success</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --panel: #ffffff;
+      --ink: #111111;
+      --muted: #6b7280;
+      --ring: #111827;
+      --accent: #0f0f0f;
+      --radius: 22px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    *:focus {
+      outline: none;
+    }
+    
+    
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    
+    
+    
+    html,
+    body {
+      height: 100vh;
+      width: 100vw;
+    }
+    
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    
+    .frame {
+      width: 100vh;
+      background: var(--panel);
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      
+    }
+    
+    .visual {
+      position: relative;
+      min-height: 540px;
+      background: #000;
+      border-radius: var(--radius);
+      margin: 5px;
+    }
+    
+    .visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://picsum.photos/1000/1200?blur=1&random=9") center/cover no-repeat;
+      border-radius: var(--radius);
+      opacity: .35;
+    }
+    
+    .visual-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+    }
+    
+    .visual-copy {
+      margin: auto;
+      text-align: center;
+      line-height: 1.5;
+      font-size: 18px;
+      letter-spacing: .01em;
+    }
+    
+    .visual-copy .title {
+      display: block;
+      color: #f3f4f6;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    
+    .pane {
+      padding: 40px 36px;
+      background: #fff;
+      margin: 40px;
+    }
+    
+    .pane h1 {
+      font-size: 26px;
+      margin: 0 0 22px;
+      font-weight: 700;
+      color: #0b0b0b;
+    }
+    
+    .form-grid {
+      display: grid;
+      gap: 14px
+    }
+    
+    label {
+      font-size: 13px;
+      color: #374151;
+      display: block;
+      margin: 0 0 6px
+    }
+    
+    .field {
+      position: relative;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+    }
+    
+    .input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      outline: 0;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #111827;
+      border-radius: 12px;
+    }
+    
+    .input::placeholder {
+      color: #9ca3af
+    }
+    
+    .field:focus-within {
+      box-shadow: 0 0 0 3px #e5e7eb;
+      border-color: #d1d5db
+    }
+    
+    .eye {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border: 0;
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #6b7280;
+    }
+    
+    .hints {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #6b7280;
+      display: grid;
+      gap: 4px
+    }
+    
+    .hint {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+    
+    .check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid #9ca3af;
+      display: grid;
+      place-items: center;
+      font-size: 11px
+    }
+    
+    .agree {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      color: #4b5563;
+      font-size: 13px
+    }
+    
+    .agree a {
+      color: #111827;
+      text-decoration: underline
+    }
+    
+    .cta {
+      margin-top: 16px;
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      background: #0b0b0b;
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 16px;
+      font-size: 14px;
+      cursor: pointer
+    }
+    
+    .muted {
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: #6b7280
+    }
+    
+    .muted a {
+      color: #111827;
+      font-weight: 600
+    }
+    
+    .or {
+      margin: 18px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #9ca3af;
+      font-size: 12px
+    }
+    
+    .or::before,
+    .or::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: #e5e7eb
+    }
+    
+    .oauth {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    .btn-oauth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      color: #111827;
+      cursor: pointer;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    
+    .btn-oauth svg {
+      width: 18px;
+      height: 18px
+    }
+    
+    .eye::after {
+      content: "";
+      width: 70%;
+      height: 70%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    .eye.visible::after {
+      background-image: url('eye.svg');
+    }
+    
+    .eye.hidden::after {
+      background-image: url('noeye.svg');
+    }
+    
+    
+    @media (max-width: 960px) {
+      .frame {
+        grid-template-columns: 1fr
+      }
+      
+      .visual {
+        min-height: 300px
+      }
+      
+      .pane {
+        padding: 28px
+      }
+    }
+  </style>
 </head>
-<body> 
-    <div id="login">
-        <div id="content">
-            <div id="image_container">
-                <img src="https://picsum.photos/200/300" alt="img" id="image">
-            </div>
-            <div id="form_container">
-                <div id="form">
-                    <h1>Cadastro</h1>
-                    <form action="cadastrar.php" method="post">
-                        <label for="rm">RM</label>
-                        <input type="number" name="rm" class="input" required>
-                        <label for="name">Nome</label>
-                        <input type="text" name="name" class="input" required>
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="input" required>
-                        <label for="password">Senha</label>
-                        <input type="password" name="password" class="input" required>
-                        <label for="cpf">CPF</label>
-                        <input type="text" name="cpf" class="input" required>
-                        <input type="submit" value="Cadastrar">
-                    </form>
-                </div>
-            </div>
+
+<body>
+  <main class="frame" role="main">
+    <!-- esquerda -->
+    <section class="visual" aria-label="Painel de destaque espacial">
+      <div class="visual-inner">
+        
+        <div class="visual-copy" aria-live="polite">
+          <span class="title">Discover the Future of Finance</span>
+          from Mars <span aria-hidden="true">🪐</span> to Your Wallet
         </div>
-    </div>
+        
+      </div>
+    </section>
+    
+    <!-- direita -->
+    <section class="pane" aria-label="Formulário de cadastro">
+      <h1>Join Now for Success</h1>
+      
+      <form class="form-grid" action="#" method="post" onsubmit="event.preventDefault()">
+        <div>
+          <label for="name">Name</label>
+          <div class="field">
+            <input class="input" id="name" name="name" type="text" placeholder="Courtney Henry" autocomplete="name" required>
+          </div>
+        </div>
+        
+        <div>
+          <label for="email">Email</label>
+          <div class="field">
+            <input class="input" id="email" name="email" type="email" placeholder="courtneyhenry19@gmail.com" autocomplete="email" required>
+          </div>
+        </div>
+        
+                <div>
+          <label for="cpf">cpf</label>
+          <div class="field">
+            <input class="input" id="cpf" name="cpf" type="text" placeholder="000.000.000-00" autocomplete="" required>
+          </div>
+        </div>
+        
+        <div>
+          <label for="password">Password</label>
+          <div class="field">
+            <input class="input" id="password" name="password" type="password" minlength="8" placeholder="********" required aria-describedby="pwd-hints">
+            <button type="button" class="eye visible" aria-label="Mostrar/ocultar senha" id="togglePwd"></button>
+            
+          </div>
+          
+          <div id="pwd-hints" class="hints" aria-live="polite">
+            <div class="hint"><span class="check" id="chk-num">✓</span><span>Must contain one number</span></div>
+            <div class="hint"><span class="check" id="chk-len">✓</span><span>Min 8 characters</span></div>
+          </div>
+        </div>
+        
+        
+        
+        <label class="agree">
+          <input type="checkbox" required>
+          <span>I agree to the <a href="#" rel="nofollow">Terms&amp;Privacy</a></span>
+        </label>
+        
+        <button class="cta" type="submit">SIGN ME UP!</button>
+        
+        <p class="muted">Already have an account? <a href="#" rel="nofollow">Log in</a></p>
+        
+        <div class="or">or</div>
+        
+        <div class="oauth">
+          <button type="button" class="btn-oauth" aria-label="Sign up with Google">
+            <!-- Google -->
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48" aria-hidden="true">
+              <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+              <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+              <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+              <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+            </svg>
+            Sign Up with Google
+          </button>
+          
+          <button type="button" class="btn-oauth" aria-label="Sign up with Apple">
+            <!-- Apple -->
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+            </svg>
+            Sign Up with Apple
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+  
+  <script>
+    const toggle = document.getElementById('togglePwd');
+    const pwd = document.getElementById('password');
+    
+    toggle.addEventListener('click', () => {
+      const isPassword = pwd.getAttribute('type') === 'password';
+      if (isPassword) {
+        pwd.setAttribute('type', 'text');
+        pwd.placeholder = "paQ0xzzat";
+        toggle.classList.remove('visible');
+        toggle.classList.add('hidden');
+      } else {
+        pwd.setAttribute('type', 'password');
+        pwd.placeholder = "********";
+        toggle.classList.remove('hidden');
+        toggle.classList.add('visible');
+      }
+    });
+    
+    
+    const chkNum = document.getElementById('chk-num');
+    const chkLen = document.getElementById('chk-len');
+    
+    const paint = (el, ok) => {
+      el.style.borderColor = ok ? '#10b981' : '#9ca3af';
+      el.style.color = ok ? '#10b981' : '#6b7280';
+      el.textContent = ok ? '✓' : '•';
+    };
+    
+    const validate = () => {
+      const v = pwd.value || "";
+      paint(chkNum, /\d/.test(v));
+      paint(chkLen, v.length >= 8);
+    };
+    pwd.addEventListener('input', validate);
+    validate();
+    
+    document.querySelectorAll("label[for]").forEach(label => {
+      let input = document.getElementById(label.getAttribute("for"));
+      if (input && input.required) {
+        label.innerHTML += '*';
+      }
+    });
+    
+    
+  </script>
 </body>
+
 </html>

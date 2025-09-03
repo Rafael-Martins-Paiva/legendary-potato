@@ -1,7 +1,7 @@
 <?php
 class Aluno{
-    private $id;
     private $rm;
+    private $senha;
     private $nome;
     private $cpf;
     private $email;
@@ -20,9 +20,6 @@ class Aluno{
         }
     }
 
-    public function getId(){
-        return $this->id;
-    }
     public function getRm(){
         return $this->rm;
     }
@@ -36,9 +33,6 @@ class Aluno{
         return $this->cpf;
     }
     
-    public function setRm($rm){
-        $this ->rm =$rm;
-    }
     public function setNome($nome){
         $this ->nome =$nome;
     }
@@ -50,11 +44,11 @@ class Aluno{
     }
 
     public function cadastrar($email, $cpf, $rm, $nome){
-        $sql = "INSERT INTO aluno set rm = :r, nome = :n, email = :e, cpf = :c";
+        $sql = "INSERT INTO aluno set nome = :n, email = :e, cpf = :c, senha = :s";
         $sql = $this->pdo->prepare($sql);
 
         $sql-> bindValue(":n", $nome);
-        $sql-> bindValue(":r", $rm);
+        $sql-> bindValue(":s", $senha);
         $sql-> bindValue(":e", $email);
         $sql-> bindValue(":c", $cpf);
 
