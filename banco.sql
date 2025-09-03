@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS etimpwiiAluno;
 CREATE DATABASE etimpwiiAluno;
 USE etimpwiiAluno;
-
+ 
 CREATE TABLE aluno (
     rm int PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
