@@ -44,13 +44,12 @@ class Aluno{
     }
 
     public function cadastrar($email, $cpf, $rm, $nome){
-        $sql = "INSERT INTO aluno set nome = :n, email = :e, cpf = :c, senha = :s";
+        $sql = "INSERT INTO aluno (nome, email, cpf, senha) VALUES (:n, :e, :c, :s)";
         $sql = $this->pdo->prepare($sql);
-
-        $sql-> bindValue(":n", $nome);
-        $sql-> bindValue(":s", $senha);
-        $sql-> bindValue(":e", $email);
-        $sql-> bindValue(":c", $cpf);
+        $sql->bindValue(":n", $nome);
+        $sql->bindValue(":s", $senha);
+        $sql->bindValue(":e", $email);
+        $sql->bindValue(":c", $cpf);
 
         return $sql->execute();
     }
