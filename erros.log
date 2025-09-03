@@ -1,24 +1,23 @@
 [2025-09-01 12:51:21] Tentativa de cadastro com dados inválidos ou incompletos.
 
-public class MatrizSomaIndices {
+public class MediaNotas {
 
     public static void main(String[] args) {
-        int[][] matriz = new int[5][5];
+        // Vetor com as notas de exemplo
+        double[] notas = {8.5, 7.0, 9.2, 6.5, 10.0, 8.8};
+        
+        // Variável para armazenar a soma das notas
+        double soma = 0;
 
-        // Preenche a matriz com a soma dos índices (i + j)
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                matriz[i][j] = i + j;
-            }
+        // For-each loop para somar as notas
+        for (double nota : notas) {
+            soma += nota;
         }
 
-        // Imprime a matriz de forma alinhada
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                // Usa %-4d para formatar o número em 4 espaços, alinhado à esquerda
-                System.out.printf("%-4d", matriz[i][j]);
-            }
-            System.out.println(); // Pula para a próxima linha após cada linha da matriz
-        }
+        // Calcula a média dividindo a soma pelo número de elementos no vetor
+        double media = soma / notas.length;
+
+        // Imprime o resultado formatado
+        System.out.printf("A média das notas é: %.2f%n", media);
     }
 }
