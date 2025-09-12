@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $aluno->cadastrar($email, $cpf, $name, $hashed_password);
+        $aluno->cadastrar($email, $cpf,  $hashed_password, $name);
 
         header("Location: sucesso_cadastro.html");
         exit();

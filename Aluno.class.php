@@ -42,6 +42,9 @@ class Aluno{
     public function setCpf($cpf){
         $this ->cpf =$cpf;
     }
+    public function setSenha($senha){
+        $this ->senha =$senha;
+    }
 
     public function cadastrar($email, $cpf, $senha, $nome){
         $sql = "INSERT INTO aluno (nome, email, cpf, senha) VALUES (:n, :e, :c, :s)";

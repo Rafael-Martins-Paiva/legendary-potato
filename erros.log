@@ -1,0 +1,15 @@
+[2025-09-12 19:18:41] Tentativa de cadastro com dados inválidos ou incompletos.
+[2025-09-12 19:25:05] Email 'test@test.com' já cadastrado.
+[2025-09-12 19:25:21] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '00000000000' for key 'cpf'
+[2025-09-12 19:31:17] Email 'test4@test.com' já cadastrado.
+[2025-09-12 19:31:25] Email 'test4@test.com' já cadastrado.
+[2025-09-12 19:33:04] Email 'test4@test.com' já cadastrado.
+[2025-09-12 19:34:20] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:35:45] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:35:48] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:36:54] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:36:57] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:37:01] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:37:17] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:39:24] Email 'test4fd@test.com' já cadastrado.
+[2025-09-12 19:39:37] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '00000000005' for key 'cpf'

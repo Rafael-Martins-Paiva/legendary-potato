@@ -359,7 +359,7 @@
         <div>
           <label for="password">Password</label>
           <div class="field">
-            <input class="input" id="password" name="password" type="password" minlength="8" placeholder="********" required aria-describedby="pwd-hints">
+            <input class="input" id="password" name="password" type="password" minlength="8" placeholder="••••••••" required aria-describedby="pwd-hints">
             <button type="button" class="eye visible" aria-label="Mostrar/ocultar senha" id="togglePwd"></button>
             
           </div>
@@ -421,7 +421,7 @@
         toggle.classList.add('hidden');
       } else {
         pwd.setAttribute('type', 'password');
-        pwd.placeholder = "********";
+        pwd.placeholder = "••••••••";
         toggle.classList.remove('hidden');
         toggle.classList.add('visible');
       }
